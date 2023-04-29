@@ -8,18 +8,43 @@ using namespace unlocker;
 
 enum class ProductType {
     App = 1,
-    DLC = 2,
-    Item = 4,
+    DLC = 2, //Addon
+    Package = 3.
+    Item = 4, //Consumable
+    ItemPack = 5, //ConsumablePack
+    Bundle = 6
 };
+/*
+enum class OwnershipType {
+    Owned = 1,
+    Preordered = 2,
+    Suspended = 3.
+    Revoked = 4,
+    Locked = 5, 
+};
+
+enum class StateType {
+    Visible = 1,
+    Installable = 2,
+    Playable = 3.
+    Expired = 4
+};
+
+enum class ActivationType {
+    Purchased = 1,
+    Trial = 2,
+    Subscription = 3
+};
+*/
 
 struct Product {
     uint32_t app_id;
 
     ProductType type;
-    [[maybe_unused]] uint32_t mystery1;
-    [[maybe_unused]] uint32_t always_3 = 3;
-    [[maybe_unused]] uint32_t always_0 = 0;
-    [[maybe_unused]] uint32_t mystery2;
+    [[maybe_unused]] uint32_t mystery1; //OwnershipType ownership
+    [[maybe_unused]] uint32_t always_3 = 3; //StateType state   We always want this Playable
+    [[maybe_unused]] uint32_t always_0 = 0; //balance
+    [[maybe_unused]] uint32_t mystery2; //ActivationType activation
 
     Product(uint32_t app_id, ProductType type) {
         this->app_id = app_id;
